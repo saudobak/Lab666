@@ -1,15 +1,58 @@
-<html>
-<head><title>Lab 5</title></head>    
-<body>
 <?php
-// A simple web site in Cloud9 that runs through Apache
-// Press the 'Run' button on the top to start the web server,
-// then click the URL that is emitted to the Output tab of the console
+    require_once('database.php');
 
-echo 'Hello world from Cloud9!';
-
-echo phpinfo();
-
+    // Get name for current category
+    $query = "SELECT firstName, lastName FROM customers";
+    $customers = $db->query($query);
+ 
 ?>
+<!DOCTYPE html>
+<html>
+
+<!-- the head section -->
+<head>
+    <title>My Shop</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<!-- the body section -->
+<body>
+    <div id="page">
+
+    <div id="header">
+        <h1>Customer Relations</h1>
+    </div>
+
+    <div id="main">
+
+        <h1>Customer List</h1>
+
+        <div id="content">
+            <!-- display a list of customers -->
+         
+            <table>
+                <tr>
+                    <th>First Name</th>
+                    <th>last Name</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <?php foreach ($customers as $customer) : ?>
+                <tr>
+                    <td><?php echo $customer['firstName']; ?></td>
+                    <td><?php echo $customer['lastName']; ?></td>
+                    
+                    
+                </tr>
+                <?php endforeach; ?>
+            </table>
+            
+        </div>
+    </div>
+
+    <div id="footer">
+        <p>&copy; <?php echo date("Y"); ?> My Shop, Inc.</p>
+    </div>
+
+    </div><!-- end page -->
 </body>
 </html>
