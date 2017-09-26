@@ -1,8 +1,9 @@
 <?php
     require_once('database.php');
 
-    // Get name for current category
+    // Get customers
     $query = "SELECT firstName, lastName FROM customers order by lastName;";
+    //result set
     $customers = $db->query($query);
 ?> 
 <!-- header information comes from include file -->
@@ -23,11 +24,25 @@
                 <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
+                    <th>Full Name</th>
                 </tr>
                 <?php foreach ($customers as $customer) : ?>
                 <tr>
                     <td><?php echo $customer['firstName']; ?></td>
                     <td><?php echo $customer['lastName']; ?></td>
+                    <td><?php 
+                    $firstName =$customer['firstName'];
+                    $lastName =$customer['lastName']; 
+                    $fullName = $firstName." ".$lastName;
+                    echo $fullName?></td>
+                </tr>
+                <!-- result set is available -->
+                <tr>
+                    <td><?php 
+                    $firstName =$customer['firstName'];
+                    $lastName =$customer['lastName']; 
+                    $fullName = $firstName." ".$lastName;
+                    echo $fullName?></td>
                     
                     
                 </tr>
@@ -38,13 +53,14 @@
                 <tr>
                     <th>Full Name</th>
                 </tr>
+                <!-- result set is NOT available -->
                 <?php foreach ($customers as $customer) : ?>
                 <tr>
                     <td><?php 
                     $firstName =$customer['firstName'];
                     $lastName =$customer['lastName']; 
                     $fullName = $firstName.$lastName;
-                    echo $fullName?></td>
+                    echo $firstName?></td>
                     
                     
                 </tr>

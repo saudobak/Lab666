@@ -1,12 +1,14 @@
 <?php
-    $dsn = 'mysql:host=localhost;dbname=shopDB';
+    $dsn = 'localhost';
+    $dbname = 'shopDB';
     $username = 'mgs_user';
     $password = 'pa55word';
 
-    try {
-        $db = new PDO($dsn, $username, $password);
-    } catch (PDOException $e) {
-        $error_message = $e->getMessage();
+    $db = new mysqli($dsn, $username, $password, $dbname);
+    
+    if(mysqli_connect_errno())
+    {
+        echo '<p>Error: could not connect to DB.<br/>Please try later.</p>';
         include('database_error.php');
         exit();
     }
